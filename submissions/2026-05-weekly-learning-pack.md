@@ -15,6 +15,7 @@
 | 材料 | 说明 |
 | --- | --- |
 | [AI Foundation Concepts](../tasks/2026-05-24-ai-foundation-concepts.md) | 整理 LLM、Prompt、Context Window、Workflow、Agent、Tool Use、AI Coding、Guardrails、Tracing、Human-in-the-loop。 |
+| [Agent Memory Learning Summary](./2026-05-29-agent-memory-learning-summary.md) | 重新理解 Agent Memory：Memory 不是数据库本身，而是包含提取、判断、压缩、存储、检索、更新和遗忘的动态管线。 |
 | [Daily 2026-05-18](../daily/2026-05-18.md) | 复习 AI 基础：LLM、Prompt Engineering、Context Management、RAG、Agent、Frameworks、MCP、Evaluation。 |
 | [Transaction Risk Summary Prompt](../tasks/2026-05-25-prompt-transaction-risk-summary.md) | 把交易信息转成固定 JSON 风险摘要，并设计三组 regression cases。 |
 | [Prompt 文件](../prompts/transaction_risk_summary_prompt.md) | 交易风险摘要 prompt，要求输出资产变化、权限变化、风险等级、人工确认要求和不确定性。 |
