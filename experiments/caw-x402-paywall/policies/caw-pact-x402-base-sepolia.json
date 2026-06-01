@@ -1,0 +1,53 @@
+{
+  "intent": "Pay x402-protected API calls for one small AI/data request on Base Sepolia.",
+  "execution_plan": "The agent requests a protected endpoint, reads the HTTP 402 payment requirements, verifies price/network/payee/resource against this pact, pays only if all checks pass, then retries the request and stores an audit trail.",
+  "policies": [
+    {
+      "name": "x402 per-call budget",
+      "when": {
+        "operation": "x402_payment",
+        "scheme": "exact"
+      },
+      "limits": {
+        "max_amount_usd_per_call": "0.005",
+        "max_amount_usd_daily": "0.02"
+      },
+      "allow": {
+        "networks": [
+          "eip155:84532"
+        ],
+        "pay_to": [
+          "0x0000000000000000000000000000000000000402"
+        ],
+        "resources": [
+          "GET /api/inference"
+        ]
+      },
+      "deny_if": [
+        "price_exceeds_per_call_budget",
+        "network_not_allowlisted",
+        "payee_not_allowlisted",
+        "resource_not_allowlisted",
+        "outside_time_window"
+      ]
+    }
+  ],
+  "completion_conditions": [
+    {
+      "type": "tx_count",
+      "threshold": "1"
+    },
+    {
+      "type": "amount_spent_usd",
+      "threshold": "0.02"
+    },
+    {
+      "type": "time_elapsed",
+      "threshold": "3600"
+    }
+  ],
+  "time_window": {
+    "not_before": "2026-05-31T00:00:00.000Z",
+    "not_after": "2026-06-30T23:59:59.000Z"
+  }
+}

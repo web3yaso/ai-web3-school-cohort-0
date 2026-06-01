@@ -1,0 +1,22 @@
+{
+  "name": "caw-x402-paywall-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal x402 paywall service plus a CAW-style bounded payment agent.",
+  "scripts": {
+    "server": "node src/server.js",
+    "agent": "node src/agent.js",
+    "demo:mock": "node src/server.js --once & sleep 1 && node src/agent.js http://127.0.0.1:4021/api/inference",
+    "agent:caw": "node src/agent.js --mode=caw http://127.0.0.1:4021/api/inference"
+  },
+  "dependencies": {
+    "@x402/core": "^2.14.0",
+    "@x402/evm": "^2.14.0",
+    "@x402/express": "^2.14.0",
+    "express": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
