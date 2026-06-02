@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1560" viewBox="0 0 1200 1560">
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif; fill: #172033; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #536179; }
+      .box-title { font-size: 21px; font-weight: 700; }
+      .box-text { font-size: 17px; fill: #334155; }
+      .label { font-size: 15px; font-weight: 700; }
+      .small { font-size: 14px; fill: #64748b; }
+      .human { fill: #fff4d6; stroke: #c6811a; }
+      .agent { fill: #e8f3ff; stroke: #2970d6; }
+      .infra { fill: #e9f8ed; stroke: #2f8f4e; }
+      .deny { fill: #ffe8e8; stroke: #c93838; }
+      .line { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .line-soft { stroke: #94a3b8; stroke-width: 2; fill: none; marker-end: url(#arrow-soft); stroke-dasharray: 8 7; }
+      .decision { fill: #f8fafc; stroke: #64748b; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-soft" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="1560" fill="#ffffff"/>
+
+  <text x="600" y="64" text-anchor="middle" class="title">Agent 发起链上动作：人机权限边界流程图</text>
+  <text x="600" y="98" text-anchor="middle" class="subtitle">核心：人批准一次任务级授权 Pact；agent 只能在 Pact 边界内自动执行，超范围就暂停问人。</text>
+
+  <g transform="translate(80,130)">
+    <rect x="0" y="0" width="230" height="48" rx="8" class="human"/>
+    <text x="22" y="31" class="label">必须人工确认</text>
+    <rect x="270" y="0" width="230" height="48" rx="8" class="agent"/>
+    <text x="292" y="31" class="label">Agent 可自动化</text>
+    <rect x="540" y="0" width="230" height="48" rx="8" class="infra"/>
+    <text x="562" y="31" class="label">系统 / 钱包自动执行</text>
+    <rect x="810" y="0" width="230" height="48" rx="8" class="deny"/>
+    <text x="832" y="31" class="label">拒绝 / 结束</text>
+  </g>
+
+  <!-- Step boxes -->
+  <g id="s1">
+    <rect x="330" y="220" width="540" height="92" rx="10" class="human"/>
+    <text x="600" y="254" text-anchor="middle" class="box-title">1. 人提出任务</text>
+    <text x="600" y="283" text-anchor="middle" class="box-text">例如：帮我用 500 USDC 分批买 ETH</text>
+  </g>
+
+  <g id="s2">
+    <rect x="330" y="370" width="540" height="116" rx="10" class="agent"/>
+    <text x="600" y="405" text-anchor="middle" class="box-title">2. Agent 生成 Pact 草案</text>
+    <text x="600" y="434" text-anchor="middle" class="box-text">写清楚任务意图、执行计划、预算、范围、时间窗口</text>
+    <text x="600" y="461" text-anchor="middle" class="box-text">以及失败处理和完成条件</text>
+  </g>
+
+  <g id="s3">
+    <rect x="330" y="545" width="540" height="100" rx="10" class="human"/>
+    <text x="600" y="581" text-anchor="middle" class="box-title">3. 人确认 Pact</text>
+    <text x="600" y="611" text-anchor="middle" class="box-text">这是第一次必须人工确认：批准、修改或拒绝</text>
+  </g>
+
+  <g id="d1">
+    <path d="M600 705 L780 795 L600 885 L420 795 Z" class="decision"/>
+    <text x="600" y="787" text-anchor="middle" class="box-title">是否批准？</text>
+    <text x="600" y="817" text-anchor="middle" class="small">不批准则不授予任何链上权限</text>
+  </g>
+
+  <g id="reject1">
+    <rect x="80" y="747" width="250" height="96" rx="10" class="deny"/>
+    <text x="205" y="786" text-anchor="middle" class="box-title">结束</text>
+    <text x="205" y="817" text-anchor="middle" class="box-text">Pact rejected</text>
+  </g>
+
+  <g id="s4">
+    <rect x="330" y="945" width="540" height="104" rx="10" class="infra"/>
+    <text x="600" y="982" text-anchor="middle" class="box-title">4. Pact 生效</text>
+    <text x="600" y="1012" text-anchor="middle" class="box-text">agent 获得临时、受限制、可审计的任务级权限</text>
+  </g>
+
+  <g id="s5">
+    <rect x="330" y="1105" width="540" height="104" rx="10" class="agent"/>
+    <text x="600" y="1142" text-anchor="middle" class="box-title">5. Agent 准备一笔具体交易</text>
+    <text x="600" y="1172" text-anchor="middle" class="box-text">查询余额、估算 gas、模拟交易、校验地址和 calldata</text>
+  </g>
+
+  <g id="d2">
+    <path d="M600 1265 L780 1355 L600 1445 L420 1355 Z" class="decision"/>
+    <text x="600" y="1345" text-anchor="middle" class="box-title">是否在 Pact 范围内？</text>
+    <text x="600" y="1376" text-anchor="middle" class="small">预算、链、token、地址、合约、操作类型</text>
+  </g>
+
+  <g id="allow">
+    <rect x="835" y="1301" width="285" height="108" rx="10" class="agent"/>
+    <text x="977" y="1338" text-anchor="middle" class="box-title">自动执行</text>
+    <text x="977" y="1368" text-anchor="middle" class="box-text">签名、广播、监控状态</text>
+    <text x="977" y="1394" text-anchor="middle" class="box-text">并写入审计日志</text>
+  </g>
+
+  <g id="review">
+    <rect x="80" y="1160" width="280" height="116" rx="10" class="human"/>
+    <text x="220" y="1198" text-anchor="middle" class="box-title">暂停问人</text>
+    <text x="220" y="1228" text-anchor="middle" class="box-text">金额偏大、合约风险高</text>
+    <text x="220" y="1254" text-anchor="middle" class="box-text">或命中 review 阈值</text>
+  </g>
+
+  <g id="deny">
+    <rect x="80" y="1320" width="280" height="116" rx="10" class="deny"/>
+    <text x="220" y="1358" text-anchor="middle" class="box-title">直接拒绝</text>
+    <text x="220" y="1388" text-anchor="middle" class="box-text">超过硬预算、地址不在白名单</text>
+    <text x="220" y="1414" text-anchor="middle" class="box-text">或操作类型不被允许</text>
+  </g>
+
+  <g id="end">
+    <rect x="835" y="1450" width="285" height="82" rx="10" class="infra"/>
+    <text x="977" y="1482" text-anchor="middle" class="box-title">任务结束后</text>
+    <text x="977" y="1512" text-anchor="middle" class="box-text">Pact 自动失效，权限收回</text>
+  </g>
+
+  <g id="emergency">
+    <rect x="890" y="945" width="230" height="104" rx="10" class="human"/>
+    <text x="1005" y="982" text-anchor="middle" class="box-title">紧急刹车</text>
+    <text x="1005" y="1012" text-anchor="middle" class="box-text">人可随时 freeze</text>
+    <text x="1005" y="1038" text-anchor="middle" class="box-text">或 revoke</text>
+  </g>
+
+  <!-- Arrows -->
+  <path d="M600 312 L600 370" class="line"/>
+  <path d="M600 486 L600 545" class="line"/>
+  <path d="M600 645 L600 705" class="line"/>
+  <path d="M420 795 L330 795" class="line"/>
+  <text x="372" y="776" text-anchor="middle" class="small">拒绝</text>
+  <path d="M600 885 L600 945" class="line"/>
+  <text x="635" y="925" class="small">批准</text>
+  <path d="M600 1049 L600 1105" class="line"/>
+  <path d="M600 1209 L600 1265" class="line"/>
+  <path d="M780 1355 L835 1355" class="line"/>
+  <text x="804" y="1338" text-anchor="middle" class="small">allow</text>
+  <path d="M420 1355 C365 1340 330 1290 300 1276" class="line"/>
+  <text x="349" y="1310" text-anchor="middle" class="small">require approval</text>
+  <path d="M420 1378 L360 1378" class="line"/>
+  <text x="390" y="1360" text-anchor="middle" class="small">deny</text>
+  <path d="M977 1409 L977 1450" class="line"/>
+  <path d="M835 1491 C720 1491 665 1460 635 1438" class="line-soft"/>
+  <text x="735" y="1472" text-anchor="middle" class="small">未完成则回到下一笔交易</text>
+  <path d="M870 997 L890 997" class="line-soft"/>
+  <path d="M1005 1049 L1005 1450" class="line-soft"/>
+
+  <text x="80" y="1518" class="small">一句话：不要给 agent 长期热钱包权限；给它一次任务的 Pact，范围内自动执行，超范围人工确认，违规自动拒绝。</text>
+</svg>
